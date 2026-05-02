@@ -80,6 +80,7 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
 
 void insertTreeMap(TreeMap * tree, void* key, void * value) {
     if(tree == NULL || key == NULL) return;
+    
     if(tree->root == NULL){
         TreeNode * new = createTreeNode(key, value);
         if(new == NULL){
@@ -88,11 +89,15 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
         tree->root = new;
         tree->current = new;
         return;
+        
     }
+    
     TreeNode * aux = tree->root;
+    
     while(aux != NULL){
         if(is_equal(tree, key, aux->pair->key) == 1){
             return;
+            
         }
         if(tree->lower_than(key, aux->pair->key) == 1){
             if(aux->left == NULL){
@@ -106,6 +111,7 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
                 return;
             }
             aux = aux->left;
+            
         }
         else if(tree->lower_than(key, aux->pair->key) == 0){
             if(aux->right == NULL){
@@ -132,8 +138,15 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
 // Si x no tiene hijo izquierdo se retorna el mismo nodo.
 
 TreeNode * minimum(TreeNode * x){
+    if(x == NULL)return NULL;
+    if(x->left == NULL) return x;
 
-    return NULL;
+    TreeNode *aux = x->left;
+    while(aux->left != NULL){
+        aux = aux->left;
+    }
+
+    return aux;
 }
 
 // 5.- Implemente la función void removeNode(TreeMap * tree, TreeNode* node). 
