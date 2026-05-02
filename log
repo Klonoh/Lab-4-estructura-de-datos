@@ -58,3 +58,14 @@ Sat May  2 04:27:52 AM UTC 2026:
  tests:  15|4
 total_score: 25/60
 f822477
+Sat May  2 04:48:56 AM UTC 2026: 
+ treemap.c | 38 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 38 insertions(+)
+Compilation failed
+In file included from test.c:4:
+treemap.c: In function ‘removeNode’:
+treemap.c:161:8: error: ‘map’ undeclared (first use in this function)
+  161 |     if(map == NULL || node == NULL) return;
+      |        ^~~
+treemap.c:161:8: note: each undeclared identifier is reported only once for each function it appears in
+fc9bf0b
