@@ -254,29 +254,30 @@ Pair * nextTreeMap(TreeMap * tree) {
 
 Pair * upperBound(TreeMap * tree, void* key) {
     if(tree == NULL || key == NULL || tree->root == NULL) return NULL;
+    
     TreeNode * aux = tree->root;
-    TreeNode * ub_node = aux;
+    TreeNode * ub_node = NULL;
+    
     while(aux != NULL){
         if(is_equal(tree, key, aux->pair->key) == 1){
             tree->current = aux;
             return tree->current->pair;
         }
         if(tree->lower_than(key, aux->pair->key) == 1){
-            if(tree->lower_than(aux->pair->key, ub_node->pair->key) == 1){
-                ub_node = aux;
-            }
+            ub_node = aux;
             aux = aux->left;
-            
-        
         }
         else if(tree->lower_than(key, aux->pair->key) == 0){
             aux = aux->right;
         }
     }
-    if(ub_node == tree->root) return NULL;
-    tree->current = ub_node;
-    return tree->current->pair;
     
+    if(ub_node != NULL) {
+        tree->current = ub_node;
+        return tree->current->pair;
+    }
+    
+    return NULL;
 }
 
 
